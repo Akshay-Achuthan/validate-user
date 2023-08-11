@@ -4,9 +4,11 @@
 
 html {
   font-family: sans-serif;
+  height: 100%; /* Set the html element to full height */
 }
 
 body {
   margin: 0;
   background-color: black;
+  height: 100%; /* Set the body to full height */
 }
