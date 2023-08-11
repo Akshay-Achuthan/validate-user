@@ -1,12 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
+
+import UserInput from "./components/UserInput"
+import UserResult from './components/UserResult';
 
 
 function App() {
+  
+  const updatedDataArray = [];
+
+  const [newData,setNewData] = useState(updatedDataArray);
+
+  const newDataHandler = (data) => {
+    setNewData((prevData) => {
+      return [data,...prevData];
+    });
+  }
+
   return (
-    <div>
-      <h2>Validate user</h2>
-    </div>
-  );
+      <div>
+        <UserInput onNewUserData={newDataHandler}/>
+        {newData.length > 0 && <UserResult dataItems={newData}/>}
+      </div>
+   );
 }
 
 export default App;
