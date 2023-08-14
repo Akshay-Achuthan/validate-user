@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, Fragment} from "react";
 import Card from "../UI/Card";
 import styles from "./UserInput.module.css"
 
@@ -55,7 +55,7 @@ const UserInput = (props) => {
   }
 
   return (
-    <div>
+    <Fragment>
       <Card>
         <form onSubmit={formHandler}>
 
@@ -69,7 +69,7 @@ const UserInput = (props) => {
         </form>
       </Card>
       {isModal && <UserModal data={isModal} onIsModal={errorHandler}/>}
-    </div>
+    </Fragment>
   );
 }
 

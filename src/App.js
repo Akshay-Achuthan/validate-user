@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 
 import UserInput from "./components/UserInput"
 import UserResult from './components/UserResult';
@@ -17,10 +17,10 @@ function App() {
   }
 
   return (
-      <div>
+      <Fragment>
         <UserInput onNewUserData={newDataHandler}/>
         {newData.length > 0 && <UserResult dataItems={newData}/>}
-      </div>
+      </Fragment>
    );
 }
 
