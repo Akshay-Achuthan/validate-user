@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import Card from "../UI/Card";
-
 import styles from "./UserInput.module.css"
 
 import UserModal from "../UI/UserModal"
@@ -8,8 +7,9 @@ import UserModal from "../UI/UserModal"
 const UserInput = (props) => {
   
   const [enteredText,setEnteredText] = useState(''); 
-  const [enteredAge,setEnteredAge] = useState(''); 
-  const [isModal,setIsModal] = useState(false);
+  const [enteredAge,setEnteredAge] = useState('');
+  const [isModal,setIsModal] = useState('');
+  
 
   const formHandler = (event) => {
     event.preventDefault();
@@ -20,10 +20,22 @@ const UserInput = (props) => {
     }
 
     if(enteredText === "" || enteredAge === ""){
-      setIsModal(true);
-    }else{
-      props.onNewUserData(dataObj);
+      setIsModal({
+          text: "Invalid User Input :(",
+          message: "Please enter some values input field cannot be empty"
+        }
+      )
+      return;
+    }else if(+enteredAge < 1){
+      setIsModal({
+          text: "Invalid User Input! :(",
+          message: "Age should be greater than 0"
+        }
+      )
+      return;
     }
+    
+    props.onNewUserData(dataObj);
 
     setEnteredText('');
     setEnteredAge('');
@@ -36,6 +48,10 @@ const UserInput = (props) => {
   
   const userAgeDataHandler = (event) => {
     setEnteredAge(event.target.value);
+  }
+
+  const errorHandler = () => {
+    setIsModal(null);
   }
 
   return (
@@ -52,8 +68,7 @@ const UserInput = (props) => {
           <button className={styles['form-button']} type="submit">Add user</button>
         </form>
       </Card>
-
-      <UserModal isModalData={isModal}/>
+      {isModal && <UserModal data={isModal} onIsModal={errorHandler}/>}
     </div>
   );
 }
