@@ -1,4 +1,6 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState} from 'react';
+
+import Wrapper from "./Helpers/Wrapper"
 
 import UserInput from "./components/UserInput"
 import UserResult from './components/UserResult';
@@ -17,10 +19,12 @@ function App() {
   }
 
   return (
-      <Fragment>
-        <UserInput onNewUserData={newDataHandler}/>
-        {newData.length > 0 && <UserResult dataItems={newData}/>}
-      </Fragment>
+      // <Fragment>
+        <Wrapper>
+          <UserInput onNewUserData={newDataHandler}/>
+          {newData.length > 0 && <UserResult dataItems={newData}/>}
+        </Wrapper>
+      // </Fragment>
    );
 }
 
