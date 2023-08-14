@@ -2,7 +2,6 @@ import styles from "./UserResult.module.css"
 
 const UserResult = (props) => {
 
-  console.log(props.dataItems);
   return ( 
       <ul className={styles['custom-card']}>
         {props.dataItems.map((item,index) => (
